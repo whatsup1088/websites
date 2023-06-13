@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="zh-TW">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="宏恩教會實體禮拜預約平台">
+    <meta name="author" content="daniel">
+    <meta property="og:title" content="宏恩教會實體禮拜預約平台">
+    <meta property="og:description" content="宏恩教會實體禮拜預約平台">
+    <meta property="og:url" content="">
+    <meta property="og:site_name" content="宏恩教會實體禮拜預約平台">
+    <meta property="og:image" content="">
+    <meta property="article:publisher" content="https://www.facebook.com/">
+    <title>宏恩教會實體聚會預約平台</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+        ::-webkit-scrollbar {
+            width: 0;
+            background: transparent;
+        }
+
+        body {
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            font-family: PingFangTC, sans-serif;
+            background-image: url("https://www.coreldraw.com/static/cdgs/images/pages/seo/tips/photo/basics/blur-background/blur-background-og.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+
+        a {
+            color: inherit; /* blue colors for links too */
+            text-decoration: none !important;
+        }
+
+        h1 {
+            color: white; text-shadow: black 0.1em 0.1em 0.2em
+        }
+
+        .text-shadow {
+            text-shadow: white 0.1em 0.1em 0.2em;
+        }
+    </style>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-66YX8SE8Z0"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'G-66YX8SE8Z0');
+    </script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="text-center p-2 mt-2 mb-2 rounded-3">
+            <h1>宏恩教會實體禮拜預約平台</h1>
+            <div class="alert alert-warning" role="alert">
+                疫情警戒第二級期間，依內政部宗教場所及宗教集會活動防疫管制措施再鬆綁，每場實體聚會人數上限為 <b class="text-danger" id="limit">載入中...</b> 人<br>
+                <span class="text-danger">「座位」將按主日當天來教會的進場先後順序拿取號碼牌</span><br>
+                1-140 號在三樓主堂內，141-153 號在三樓梯廳，154-210 號在一樓
+            </div>
+        </div>
+        <div class="row p-1 mt-1 mb-1 row-cols-2 text-shadow">
+            <h4 class="col mb-2 text-center"><span class="text-danger">第一場</span> 已預約人數: <b class="text-info" id="numberOfReserve_1">載入中...</b> 人</h4>
+            <h4 class="col mb-2 text-center"><span class="text-danger">第一場</span> 候補人數: <b class="text-info" id="numberOfStandBy_1">載入中...</b> 人</h4>
+            <h4 class="col mb-2 text-center"><span class="text-danger">第二場</span> 已預約人數: <b class="text-info" id="numberOfReserve_2">載入中...</b> 人</h4>
+            <h4 class="col mb-2 text-center"><span class="text-danger">第二場</span> 候補人數: <b class="text-info" id="numberOfStandBy_2">載入中...</b> 人</h4>
+        </div>
+
+        <div class="text-center p-2 mb-1 rounded-lg">
+            <div class="alert alert-primary" role="alert">
+                <div id="date"></div>
+            </div>
+            <div class="row">
+                <div role="button" class="col-sm menu" data-id="reserve">
+                    <a href="#form"><h2 class="p-3 mb-2 bg-primary text-white rounded-pill">我要預約</h2></a>
+                </div>
+                <div role="button" class="col-sm menu" data-id="cancel">
+                    <a href="#form"><h2 class="p-3 mb-2 bg-danger text-white rounded-pill">我要取消</h2></a>
+                </div>
+                <div role="button" class="col-sm menu" data-id="inquire">
+                    <a href="#form"><h2 class="p-3 mb-2 bg-success text-white rounded-pill">查詢預約記錄<h2></a>
+                </div>
+            </div>
+            <div id="form" class="row p-3 mt-4 mb-4 row-cols-1">
+                <iframe id="reserve" class="d-none" src="https://docs.google.com/forms/d/e/1FAIpQLSe4kiAS6vHRTrKox314CJ84Al_dcZdRS9I5PE4LBRN_RGlcNg/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                <iframe id="cancel" class="d-none" src="https://docs.google.com/forms/d/e/1FAIpQLSfrfuGAEDPsu4lrX9bi-c0lkHagF41z3be2X54gmSRbiKn0QQ/viewform?embedded=true" width="640" height="800" frameborder="0" marginheight="0" marginwidth="0">載入中…</iframe>
+                <div id="inquire" class="d-none">
+                    <form class="m-4 text-shadow">
+                        <div class="form-group">
+                            <h4>場次</h4>
+                            <select class="form-control" id="select_session">
+                                <option value="第一場 上午 9:00">第一場 上午 9:00</option>
+                                <option value="第二場 上午 10:30">第二場 上午 10:30</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                          <h4>請輸入預約者姓名最後一個字</h4>
+                          <h6 class="form-text text-muted">Ex: 陳大山，請輸入 "山", Daniel，請輸入 "l"</h6>
+                          <input type="text" class="form-control" id="first_name">
+                        </div>
+                        <div class="form-group">
+                          <h4>請輸入手機後三碼</h4>
+                          <h6 class="form-text text-muted">Ex: 842</h6>
+                          <input type="text" class="form-control" id="phone">
+                        </div>
+                        <a href="#resultList"><div id="inquire_btn" role="button" class="btn btn-success">查詢</div></a>
+                    </form>
+                    <div id="resultList" class="row row-cols-1 g-3"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script>
+        $(document).ready(function ($) {
+            let items = {'第一場 上午 9:00':[],'第二場 上午 10:30':[]},
+                retain = {'第一場 上午 9:00': 0, '第二場 上午 10:30': 0},
+                limit = 210;
+
+            const dataSheetURL =
+                "https://sheets.googleapis.com/v4/spreadsheets/1ZkgUOVrsbgHPSXQLzzYRXXNEAs7ckaCzOWGiXU5KCY8/values/table?key=AIzaSyBz-EwHl2quASbDzFAGteprh1oTC60o4dA"
+
+            let today = new Date(),
+                reserveDate = new Date(new Date().setDate(today.getDate() - today.getDay() + 7)),
+                startReserveDate = new Date(new Date(reserveDate.getTime() - (6 * 86400000)).setHours(09,00,00)),
+                endReserveDate = new Date(new Date(reserveDate.getTime() - (2 * 86400000)).setHours(21,00,00));
+
+                console.log(`today: ${today}\nreserve: ${reserveDate}\nstart:${startReserveDate}\nend:${endReserveDate}`)
+
+            if (!between(today.getTime(), startReserveDate.getTime(), endReserveDate.getTime()) && today.getDay() != 6) {
+                updateInfo(items);
+                Swal.fire({
+                  icon: 'warning',
+                  text: '目前非預約期間',
+                  confirmButtonText: '確認',
+                });
+            } else if (!between(today.getTime(), today.setHours(09,00,00), today.setHours(21,00,00)) || today.getDay() == 6) {
+                fetchData();
+                Swal.fire({
+                  icon: 'warning',
+                  text: '目前非預約時段',
+                  confirmButtonText: '確認',
+                });
+            } else {
+                fetchData();
+            }
+
+            function between(x, min, max) {
+                return x >= min && x <= max;
+            }
+
+            function fetchData() {
+                items = {'第一場 上午 9:00':[],'第二場 上午 10:30':[]};
+
+                $.get(dataSheetURL, function (data) {
+                    let d = data.values,
+                        header = d.shift();
+
+                    column = Object.assign({}, ...Object.entries(header).map(([a,b]) => ({ [b]: a })));
+
+                    d.forEach(function (row) {
+                        retain['第一場 上午 9:00'] = parseInt(row[column['retain_1']]);
+                        retain['第二場 上午 10:30'] = parseInt(row[column['retain_2']]);
+                        limit = parseInt(row[column['limit']]);
+
+                        if (!row[column['timestamp']] || row[column['is_duplicate']] === 'TRUE' || row[column['is_canceled']] === 'TRUE') {
+                            return;
+                        }
+
+                        let item = {};
+                        item.timestamp = row[column['timestamp']];
+                        item.name = row[column['name']];
+                        item.displayname = row[column['display_name']];
+                        item.phone = row[column['phone']];
+                        item.displayphone = row[column['display_phone']];
+                        item.session = row[column['session']];
+                        item.cancel = row[column['is_canceled']];
+                        (items[item.session] || (items[item.session] = [])).push(item);
+                    })
+
+                    updateInfo(items);
+
+                }).fail(function() {
+                    fetchData();
+                });
+            }
+
+            function updateInfo(items) {
+                let session_1_reserve = retain['第一場 上午 9:00'] + items['第一場 上午 9:00'].length,
+                    session_2_reserve = retain['第二場 上午 10:30'] + items['第二場 上午 10:30'].length,
+                    session_1_standby = 0,
+                    session_2_standby = 0;
+
+                if (session_1_reserve >= limit) {
+                    session_1_standby = session_1_reserve - limit;
+                }
+
+                if (session_2_reserve >= limit) {
+                    session_2_standby = session_2_reserve - limit;
+                }
+
+                if (Math.sign(session_1_reserve)) {
+                    session_1_reserve -= session_1_standby;
+                }
+
+                if (Math.sign(session_2_reserve)) {
+                    session_2_reserve -= session_2_standby;
+                }
+
+                $('#numberOfReserve_1').text(session_1_reserve)
+                $('#numberOfReserve_2').text(session_2_reserve)
+                $('#numberOfStandBy_1').text(session_1_standby)
+                $('#numberOfStandBy_2').text(session_2_standby)
+                $('#limit').text(limit)
+            }
+
+            $("#date").html(`
+                <b class="text-dark">${reserveDate.toLocaleDateString()}</b>&nbsp實體禮拜<br>
+                ※表單及電話 (03-3562527) 預約登記時間為<br>
+                <b class="text-danger">${startReserveDate.toLocaleDateString()}&nbsp(一)</b>&nbsp至&nbsp
+                <b class="text-danger">${endReserveDate.toLocaleDateString()}&nbsp(五)</b><br>
+                上午&nbsp9：00&nbsp至晚上&nbsp9：00<br>
+                ※有任何問題可洽教會辦公室 (03-3562527)
+            `);
+
+            $("#inquire_btn").click(function (){
+                let target_items = [],
+                    select_session = $("#select_session").val(),
+                    first_name = $("#first_name").val(),
+                    phone = $("#phone").val();
+
+                if (!first_name || first_name.length != 1) {
+                    Swal.fire({
+                      icon: 'warning',
+                      text: '請確認姓名欄位填寫正確',
+                      confirmButtonText: '確認',
+                    })
+                    return
+                }
+
+                if (!phone || phone.length != 3) {
+                    Swal.fire({
+                      icon: 'warning',
+                      text: '請確認手機後三碼欄位填寫正確',
+                      confirmButtonText: '確認',
+                    })
+                    return
+                }
+
+                items[select_session].forEach(function(value, index){
+                    if (value.name == first_name && value.phone == phone) {
+                        value.index = retain[select_session] + index + 1;
+                        target_items[0] = value;
+                    }
+                });
+
+                $('#resultList').html('');
+
+                target_items.forEach(function (item) {
+
+                    let order = '預約成功';//`${item.index}`,
+                        style = 'text-info';
+
+                    if (item.index > limit) {
+                        order = `候補 ${item.index - limit}`;
+                    }
+
+                    if (item.cancel === 'TRUE') {
+                        order = '已取消';
+                        style = 'text-danger';
+                    }
+
+                    const Card = `
+                        <div class="card bg-light m-auto" style="max-width: 18rem;">
+                            <div class="card-header">查詢結果</div>
+                            <div class="card-body">
+                              <h5 class="card-title"><b class="${style}">${order}</b></h5>
+                              <h5>預約姓名: ${item.displayname}</h5>
+                              <h5>預約者電話: ${item.displayphone}</h5>
+                              <h5>最早的有效預約填寫時間: ${item.timestamp}</h5>
+                            </div>
+                        </div>
+                    `;
+                    $('#resultList').append(Card);
+                });
+
+                if ($('#resultList').html() === '') {
+                    $('#resultList').html('<p class="text-danger">查無預約記錄</p>');
+                }
+            });
+
+            $(".menu").click(function (){
+                $("iframe").attr("class", "d-none");
+                $("#inquire").attr("class", "d-none");
+
+                let target_id = $(this).data("id");
+                $(`#${target_id}`).attr("class", "d-block");
+
+                if (target_id === "inquire") {
+                    fetchData();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
